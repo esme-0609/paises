@@ -2,7 +2,7 @@
     <h1 class="text-center"> Paises</h1>
     <hr>
     <input class="form-control" type="text" name="searchCountry" placeholder="Search country" [(ngModel)]="searchCountry">
-    <table class="table">
+    <table class="table" id="developers">
         <thead class="table-dark">
           <tr>
             <th scope="col">flag</th>
@@ -12,12 +12,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor=" let p of pais | filter:searchCountry">
+          <tr *ngFor=" let p of pais | filter:searchCountry | paginate: { itemsPerPage: 10, currentPage: page }">
             <th scope="row"><img src="{{p.flags.png}}" alt="{{p.name.common}}"></th>
             <td>{{p.name.common}}</td>
             <td>{{p.capital}}</td>
             <td>{{p.population}}</td>
           </tr>
         </tbody>
-      </table>
+      </table> 
+      <pagination-controls (pageChange)="page = $event"
+        previousLabel="Previous"
+        nextLabel="Next"
+        class="float-end" ></pagination-controls>     
 </div>

@@ -13,6 +13,7 @@ export class MainComponent implements OnInit{
 
   pais: any = [];
   searchCountry = '';
+  page!: number;
 
   constructor(
     private _paisesService: PaisesService,
